@@ -1,6 +1,6 @@
 [![N|Solid](logo.png)]() - beta
 
-Web interface and console to process fetching data from instagram profiles using InstaCabra (https://github.com/rpossan/instacabra).
+Web interface and console to process fetching data from instagram profiles using InstaCabra.
 
 Requires instacabra gem (https://github.com/rpossan/instacabra) installed or downloaded in environment.
 
