@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Input Data:</strong>
+  <%= @job.input %>
+</p>
+<p>
+  <strong>Tota Profiles:</strong>
+  <%= @job.total_profiles %>
+</p>
+<p>
+  <strong>Total media:</strong>
+  <%= @job.done %>
+</p>
+
+<%= link_to 'Edit', edit_job_path(@job) %> |
+<%= link_to 'Back', jobs_path %>

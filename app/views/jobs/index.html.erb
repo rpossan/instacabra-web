@@ -1,0 +1,52 @@
+<%= render('form', job: @job) if @job.id.nil? %>
+
+<% unless @job.id.nil? %>
+<div class="container">
+	<table class="table">
+		<thead>
+			<tr>
+			<th>Created At</th>
+			<th>Input</th>
+			<th>Profiles</th>
+			<th>Total Media</th>
+			<th>Status</th>
+			</tr>
+		</thead>
+			<tbody>
+			<tr class="info">
+			<td><%= @job.created_at.strftime("%Y-%m-%d %H:%M")%> <%= "(#{ @job.days_ago } days ago)" if @job.days_ago > 0 %></td>
+			<td><%= @job.input %></td>
+			<td><%= @job.profiles.size %></td>
+			<td><%= @job.total_media %></td>
+			<td>Processing</td>
+			</tr>
+		</tbody>
+	</table>
+  
+	<div id="status"></div>
+  
+  	<div class="actions">
+	    <%=
+	      button_to 'Cancel', @job, method: :put, data: { confirm: 'Are you sure?' }, class: 'form-control btn-danger'
+	    %>
+	</div>
+</div>
+
+<script type="text/javascript">
+  function updateStatus(){
+    $.get("/jobs/status/<%= @job.id %>", function(data) {
+        $('#status').html(data);
+        document.title = "(" + $('.progress').text() + ")" + " RipperUI";
+
+        if(/100%/i.test($('.progress').text())){
+			window.location.replace("/");
+		}
+
+        setTimeout(updateStatus, 10000);
+    });
+  }
+  updateStatus();
+</script>
+<% end %>
+
+<%= render "list", jobs: @jobs %>	

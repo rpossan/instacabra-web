@@ -1,0 +1,9 @@
+:concurrency: 10
+:pidfile: tmp/pids/sidekiq.pid
+:logfile: log/sidekiq.log
+:queues:
+  - [ripper, 1]
+  - default
+process_limits:
+  ripper: 10
+concurrency: 10

@@ -1,0 +1,9 @@
+<div align="center">
+  <h3><span class="text-success"> Completed <strong><%= @completed %></strong></span></span> of <span class="text-danger"><strong><%= @total %></strong> profiles</span></h3>
+</div>
+<div class="progress">
+  <div class="progress-bar progress-bar-striped active" role="progressbar"
+  aria-valuenow="<%= @percent %>" aria-valuemin="0" aria-valuemax="100" style="width:<%= @percent %>%">
+   <strong><%= @percent %>%</strong>
+  </div>
+</div>

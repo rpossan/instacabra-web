@@ -1,0 +1,47 @@
+<div class="container">
+<h3>History</h3>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Created At</th>
+				<th>Profile Type</th>
+				<th>Input</th>
+				<th>Profiles</th>
+				<th>Total Media</th>
+				<th>Ripped Media</th>
+				<th>% of Ripped</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% jobs.each_with_index do |job, idx| %>
+				<% if job.profiles.where(ripped: true).size < job.profiles.size %>
+					<tr class="danger">
+				<% else %>
+					<tr class="<%= idx == 0 ? 'warning' : 'success' %>">
+				<% end %>
+					<td><%= job.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+					<td style="font-size:30px; <%= "color: blue" if job.profiles.first.is_location?%>" align="center"><span class="glyphicon <%= job.profiles.first.is_location? ? "glyphicon-map-marker" : "glyphicon-user" %>"></span></td>
+					<td><%= job.input %></td>
+					<td><%= job.profiles.size %></td>
+					<td><%= job.total_media %></td>
+					<td><%= job.ripped_media %></td>
+					<td><%= job.percent.round(2) %>%</td>
+					<td>
+						<%=
+							button_to 'Download', {action: 'download', id: job.id}, method: :get, class: 'form-control btn-info', form: {target: '_blank'}
+						%>
+					</td>
+					<td>
+						<%=
+							button_to 'Delete', job, method: :delete,
+							data: { confirm: 'Are you sure?' },
+							class: 'form-control btn-danger'
+						%>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+  
+
+</div>

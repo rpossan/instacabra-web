@@ -1,0 +1,42 @@
+<br />
+<div class="form-group form-group-lg">
+  <div class="col-sm-14">
+  <%= form_for(job, :html => { :multipart => true }) do |f| %>
+    <% if job.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(job.errors.count, "error") %> prohibited this job from being saved:</h2>
+  
+        <ul>
+          <% job.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <label class="radio-inline"><input type="radio" checked="checked" name="media_type" value="all">All posts</label>
+    <label class="radio-inline"><input type="radio" name="media_type" value="photos">Only Photos</label>
+    <label class="radio-inline"><input type="radio" name="media_type" value="videos">Only Videos</label>
+    |
+    <label class="checkbox-inline"><input type="checkbox" name="has_location" checked="checked">Only has location</label>
+
+    <%= f.text_field(:input, class: "form-control input-lg", placeholder: "User profile or Location ID.") %>
+    
+    <div align="center"><h3>OR</h3></div>
+  
+    <%= file_field_tag(:input_file, class: "form-control input-lg", placeholder: "User profile or Location ID.", "data-toggle" => "tooltip",  "data-placement" => "bottom", title: "Upload PROFILES OR LOCATIONS Json file to fetch. JSON file must have an Array structure such as: ['profile1', 'profile2'] for Profile OR integer Locations IDs for Locations such as: [123456, 654321]") %>
+  
+    </br>
+  
+    <div class="actions">
+      <%= f.submit "Fetch!", class: "form-control btn-info" %>
+    </div>
+  <% end %>
+</div>
+<script>
+$(document).ready(function(){
+    //$('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="tooltip"]').tooltip();
+});
+
+</script>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  profile: MyString
+  total_media: 1
+  media_fetched: 1
+  json_result: MyString
+
+two:
+  profile: MyString
+  total_media: 1
+  media_fetched: 1
+  json_result: MyString
